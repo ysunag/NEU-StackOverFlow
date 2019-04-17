@@ -2,26 +2,23 @@ module.exports=function(app) {
 
 
 
-  app.post("/api/website/:websiteId/answer", createPage);
-  app.get("/api/website/:websiteId/answer", findAllPagesForWebsite);
-  app.get("/api/answer/:pageId", findPageById);
-  app.put("/api/answer/:pageId", updatePage);
-  app.delete("/api/answer/:pageId", deletePage);
+  app.post("/api/question/:questionId/answer", createAnswer);
+  app.get("/api/question/:questionId/answer", findAllAnswersForQuestion);
+  app.get("/api/answer/:answerId", findAnswerById);
+  app.put("/api/answer/:answerId", updateAnswer);
+  app.delete("/api/answer/:answerId", deleteAnswer);
 
-  const pageModel = require('../model/answer/answer.model.server');
+  const answerModel = require('../model/answer/answer.model.server');
 
+  function createAnswer(req, res){
+    const questionId = req.params['questionId'];
+    const answer = req.body;
 
-
-
-  function createPage(req, res){
-    const websiteId = req.params['websiteId'];
-    const page = req.body;
-
-    pageModel
-      .createPage(websiteId,page)
-      .then(function(pages) {
+    answerModel
+      .createAnswer(questionId,answer)
+      .then(function(answers) {
         console.log("answer created!");
-        res.json(pages);
+        res.json(answers);
       }, function(error) {
         if (error) {
           console.log("create answer error" + error);
@@ -31,31 +28,31 @@ module.exports=function(app) {
   }
 
 
-  function findAllPagesForWebsite(req, res) {
-    const websiteId = req.params['websiteId'];
+  function findAllAnswersForQuestion(req, res) {
+    const questionId = req.params['questionId'];
 
-    pageModel
-      .findAllPagesForWebsite(websiteId)
-      .then(function (pages) {
-        console.log("find pages by user id:" + pages);
-        res.json(pages);
+    answerModel
+      .findAllAnswersForQuestion(questionId)
+      .then(function (answers) {
+        console.log("find answers by question id:" + pages);
+        res.json(answers);
       }, function (error) {
         if (error) {
-          console.log("Find pages by user id error:" + error);
+          console.log("Find answers by question id error:" + error);
           res.send(error);
         }
       });
   }
 
 
-  function findPageById(req, res) {
-    const pageId = req.params['pageId'];
+  function findAnswerById(req, res) {
+    const answerId = req.params['answerId'];
 
-    pageModel
-      .findPageById(pageId)
-      .then(function (page) {
-        console.log("find answer by id:" + page);
-        res.json(page);
+    answerModel
+      .findAnswerById(answerId)
+      .then(function (answer) {
+        console.log("find answer by id:" + answer);
+        res.json(answer);
       }, function (error) {
         if (error) {
           console.log("Find answer by id error:" + error);
@@ -65,50 +62,39 @@ module.exports=function(app) {
   }
 
 
-  function updatePage(req, res) {
-    const pageId = req.params['pageId'];
-    const newPage = req.body;
-    pageModel
-      .updatePage(pageId, newPage)
-      .then(function (page) {
+  function updateAnswer(req, res) {
+    const answerId = req.params['answerId'];
+    const newAnswer = req.body;
+    answerModel
+      .updateAnswer(answerId, newAnswer)
+      .then(function (answer) {
         console.log("answer updated!");
-        pageModel
-          .findAllPagesForWebsite(page.websiteId)
-          .then(function (pages) {
-            console.log("find pages by website id:" + pages);
-            res.json(pages);
+        answerModel
+          .findAllAnswersForQuestion(answer.questionId)
+          .then(function (answers) {
+            console.log("find answers by question id:" +  answers);
+            res.json(answers);
           }, function (error) {
             if (error) {
-              console.log("Find pages by website id error:" + error);
+              console.log("Find answers by question id error:" + error);
               res.send(error);
             }
           });
       }, function (error) {
         if (error) {
-          console.log("update pages error" + error);
+          console.log("update answers error" + error);
           res.send(error);
         }
       });
   }
 
 
-  function deletePage(req, res) {
-    const pageId = req.params['pageId'];
-    pageModel.deletePage(pageId)
-      .then(function (page) {
+  function deleteAnswer(req, res) {
+    const answerId = req.params['answerId'];
+    answerModel.deleteAnswer(answerId)
+      .then(function (answer) {
         console.log("answer removed!");
-        // pageModel
-        //   .findAllPagesForWebsite(answer.websiteId)
-        //   .then(function (pages) {
-        //     console.log("find pages by website id:" + pages);
-        //     res.json(pages);
-        //   }, function (error) {
-        //     if (error) {
-        //       console.log("Find pages by website id error:" + error);
-        //       res.send(error);
-        //     }
-        //   });
-        res.json(page);
+        res.json(answer);
       }, function (error) {
         if (error) {
           console.log("delete answer error" + error);
