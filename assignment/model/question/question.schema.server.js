@@ -5,7 +5,6 @@ const questionSchema = mongoose.Schema({
   userId: {type: mongoose.Schema.ObjectId, ref: "User"},
   detail: String,
   title: String,
-  requireTeacher: Boolean,
   answers: [AnswerSchema],
   dateCreated: {type: Date, default: Date.now()}
 }, {collection:'Questions'});

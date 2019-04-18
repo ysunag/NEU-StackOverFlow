@@ -1,0 +1,32 @@
+<nav class="navbar fixed-top cl-blue-navbar">
+  <div class="container-fluid">
+    <div>
+      <a routerLink="/" class="navbar-brand cl-icon-padding cl-text-white">
+        <i class="fas fa-angle-left"></i>
+      </a>
+      <a class="cl-text-white navbar-brand cl-text-bold" routerLink="">
+        My Questions
+      </a>
+    </div>
+    <a routerLink='/question/new' class="navbar-brand cl-text-white">
+      <i class="fas fa-plus"></i>
+    </a>
+  </div>
+</nav>
+
+<div class="container">
+  <ul class="list-group cl-list-group-borderless cl-text-blue">
+    <li *ngFor="let item of questions" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
+      <a routerLink="/question/{{item._id}}/page" class="cl-text-blue">{{item.title}}</a>
+      <a routerLink="/question/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
+    </li>
+  </ul>
+</div>
+
+<nav class="navbar fixed-bottom cl-blue-navbar">
+  <div class="container-fluid justify-content-end">
+    <a routerLink="/profile" class="navbar-brand cl-text-white cl-icon-padding">
+      <span class="fas fa-user"></span>
+    </a>
+  </div>
+</nav>

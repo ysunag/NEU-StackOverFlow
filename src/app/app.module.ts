@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { QuestionLsitComponent } from './view/questions/question-lsit/question-lsit.component';
+import { QuestionListComponent } from './view/questions/question-list/question-list.component';
 import { QuestionEditComponent } from './view/questions/question-edit/question-edit.component';
 import { AnswerEditComponent } from './view/answers/answer-edit/answer-edit.component';
 import { AnswerListComponent } from './view/answers/answer-list/answer-list.component';
@@ -12,14 +12,18 @@ import {FormsModule} from '@angular/forms';
 import {AnswerService} from './services/answer.service.client';
 import {SharedService} from './services/shared.service.client';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { QuestionAnsweredComponent } from './view/questions/question-answered/question-answered.component';
+import { QuestionNewComponent } from './view/questions/question-new/question-new.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionLsitComponent,
+    QuestionListComponent,
     QuestionEditComponent,
     AnswerEditComponent,
-    AnswerListComponent
+    AnswerListComponent,
+    QuestionAnsweredComponent,
+    QuestionNewComponent
   ],
   imports: [
     BrowserModule,
