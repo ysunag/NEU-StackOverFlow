@@ -1,0 +1,73 @@
+<div class="homepage">
+  <div *ngIf="errorFlag" class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+
+  <div class="text-center">
+    <h1>Register</h1>
+  </div>
+  <form #inputForm="ngForm">
+
+    <div class="form-group">
+      <label for="name">User Name</label>
+      <input type="text" name="username" id='name' placeholder="Tom" class="form-control" ngModel required #username="ngModel">
+    </div>
+    <span class="alert alert-danger" *ngIf="!username.valid && username.touched">
+      Please enter username!
+    </span>
+
+    <div class="form-group">
+      <label for="pass">Password</label>
+      <input type="password" name="password" id='pass' placeholder="Write your password" class="form-control" ngModel required #password="ngModel">
+    </div>
+    <span class="alert alert-danger" *ngIf="!password.valid && password.touched">
+      Please enter password!
+    </span>
+
+    <div class="form-group">
+      <label for="vpass">Verify Password</label>
+      <input type="password" name="v_password" id='vpass' placeholder="Write your password again" class="form-control" ngModel required #v_password="ngModel">
+    </div>
+    <span class="alert alert-danger" *ngIf="!v_password.valid && v_password.touched">
+      Please enter verify password!
+    </span>
+
+    <div class="form-group">
+      <label for="em">Email</label>
+      <input type="email" name="email" id='em' placeholder="Write your email address" class="form-control" ngModel required #email="ngModel">
+    </div>
+    <span class="alert alert-danger" *ngIf="!email.valid && email.touched">
+      Please enter email!
+    </span>
+
+    <div class="form-group">
+      <label for="invitedcode">Admin Register Key</label>
+      <input type="password" name="adminkey" id='invitedcode' placeholder="Write your secret admin key" class="form-control" ngModel required #adminkey="ngModel">
+    </div>
+    <!--<span class="alert alert-danger" *ngIf="user_type.touched">-->
+    <!--Please chose user type!-->
+    <!--</span>-->
+
+    <div class="form-group inter-button">
+      <button [disabled]="!inputForm.valid" class="btn btn-success btn-block" type="button" (click)="register()">Register</button>
+    </div>
+
+    <div class="form-group inter-button">
+      <a routerLink="/login" class="btn btn-primary btn-block">Login</a>
+    </div>
+
+    <div class="form-group inter-button">
+      <a routerLink="/" class="btn btn-danger btn-block">Back to home</a>
+    </div>
+  </form>
+</div>
+
+<ul class="backimg">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+

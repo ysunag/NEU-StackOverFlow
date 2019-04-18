@@ -1,0 +1,25 @@
+.container-fluid {
+  padding-top: 10%;
+}
+
+.inter-button {
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 2%;
+}
+
+.centertext {
+  text-align: center;
+  padding-top: 2%;
+}
+
+.pictures {
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+}
+
+.single {
+  padding-left: 5%;
+  padding-right: 5%;
+}
