@@ -111,6 +111,10 @@ module.exports = function (app) {
   var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
 
   app.post ("/api/upload", upload.single('myFile'), uploadImage);
+  app.get("/api/user/:userId/followlist", findFollowusers);
+  app.post("/api/user/:userId/follow", followuser);
+  app.post("/api/user/:userId/unfollow", unFollowUser);
+  app.get("/api/user/alluser", alluser);
 
   function login(req, res) {
     var user = req.user;
@@ -250,5 +254,55 @@ module.exports = function (app) {
     });
   }
 
+  function findFollowusers(req, res) {
+    var userId = req.params["userId"];
+    userModel.findUserById(userId).then(function (user){
+      return res.json(user.subscribe);
+    }, function(err) {
+      res.status(500).json(err);
+    });
+  }
+
+  function followuser(req, res) {
+    var userId = req.params["userId"];
+    var followId = req.body.followId;
+    userModel.findUserById(followId).then(function (followUser){
+      userModel.findUserById(userId).then(function (user) {
+        const respUser = {
+          username: followUser.username,
+          email: followUser.email,
+          url: followUser.url,
+          _id: followUser._id
+        };
+        user.subscribe.push(respUser);
+        user.save();
+      }, function (err) {
+        res.status(500).json(err);
+      });
+      return res.json("Success follow user!");
+    }, function(err) {
+      res.status(500).json(err);
+    });
+  }
+
+  function unFollowUser(req, res) {
+    var userId = req.params["userId"];
+    var unFollowId = req.body.unFollowId;
+    userModel.findUserById(userId).then(function (user){
+      user.subscribe.pull({_id: unFollowId});
+      user.save();
+      return res.json("Success unfollow user!")
+    }, function(err) {
+      res.status(500).json(err);
+    });
+  }
+
+  function alluser(req, res) {
+    userModel.findAlluser().then(function (users) {
+      return res.json(users);
+    }, function (err) {
+      res.status(500).json(err);
+    });
+  }
 
 };

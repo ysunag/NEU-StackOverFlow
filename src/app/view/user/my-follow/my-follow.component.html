@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">NeuSOF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/main">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+      </li>
+
+      <li class="nav-item" *ngIf="user.flag !== 'Admin'">
+        <a class="nav-link" href="/user/follow">My Follow</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="user.flag === 'Student'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Questions and answers
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">My Question</a>
+          <a class="dropdown-item" href="#">My Answer</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Post new Question</a>
+        </div>
+      </li>
+      <li class="nav-item" *ngIf="user.flag === 'Teacher'">
+        <a class="nav-link" href="#">My Answers</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <ul class="list-group cl-list-group-borderless">
+    <li class="list-group-item cl-list-item-borderless"  *ngFor = "let user of userList; index as i">
+      <div class="card text-white bg-primary mb-3 mx-auto" style="max-width: 18rem;" *ngIf="i % 5 == 0">
+        <div class="card-header">
+          <img src="{{user.url}}" alt="Avatar" class="avatarsmall">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{user.username}}</h5>
+          <p class="card-text">Email: {{user.email}}</p>
+          <button class="btn btn-danger btn-block" (click)="unfollow(user._id)">UnFollow</button>
+        </div>
+      </div>
+
+      <div class="card text-white bg-secondary mb-3 mx-auto" style="max-width: 18rem;" *ngIf="i % 5 == 1">
+        <div class="card-header">
+          <img src="{{user.url}}" alt="Avatar" class="avatarsmall">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{user.username}}</h5>
+          <p class="card-text">Email: {{user.email}}</p>
+          <button class="btn btn-danger btn-block" (click)="unfollow(user._id)">UnFollow</button>
+        </div>
+      </div>
+
+      <div class="card text-white bg-success mb-3 mx-auto" style="max-width: 18rem;" *ngIf="i % 5 == 2">
+        <div class="card-header">
+          <img src="{{user.url}}" alt="Avatar" class="avatarsmall">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{user.username}}</h5>
+          <p class="card-text">Email: {{user.email}}</p>
+          <button class="btn btn-danger btn-block" (click)="unfollow(user._id)">UnFollow</button>
+        </div>
+      </div>
+
+      <div class="card text-white bg-warning mb-3 mx-auto" style="max-width: 18rem;" *ngIf="i % 5 == 3">
+        <div class="card-header">
+          <img src="{{user.url}}" alt="Avatar" class="avatarsmall">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{user.username}}</h5>
+          <p class="card-text">Email: {{user.email}}</p>
+          <button class="btn btn-danger btn-block" (click)="unfollow(user._id)">UnFollow</button>
+        </div>
+      </div>
+
+      <div class="card text-white bg-info mb-3 mx-auto" style="max-width: 18rem;" *ngIf="i % 5 == 4">
+        <div class="card-header">
+          <img src="{{user.url}}" alt="Avatar" class="avatarsmall">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{user.username}}</h5>
+          <p class="card-text">Email: {{user.email}}</p>
+          <button class="btn btn-danger btn-block" (click)="unfollow(user._id)">UnFollow</button>
+        </div>
+      </div>
+
+    </li>
+  </ul>
+</div>

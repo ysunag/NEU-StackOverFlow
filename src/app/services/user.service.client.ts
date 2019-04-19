@@ -63,4 +63,26 @@ export class UserService {
     return this.http.delete(this.baseUrl + '/api/user/' + userId);
   }
 
+  followuser(userId, followId) {
+    const body = {
+      followId : followId
+    };
+    return this.http.post(this.baseUrl + '/api/user/' + userId + '/follow', body, this.options);
+  }
+
+  unfollow(userId, unFollowId) {
+    const body = {
+      unFollowId : unFollowId
+    };
+    return this.http.post(this.baseUrl + '/api/user/' + userId + '/unfollow', body, this.options);
+  }
+
+  alluser() {
+    return this.http.get(this.baseUrl + '/api/user/' + '/alluser');
+  }
+
+  findFollowusers(userId) {
+    return this.http.get(this.baseUrl + '/api/user/' + userId + '/followlist');
+  }
+
 }
