@@ -12,8 +12,8 @@
       <li class="nav-item">
         <a class="nav-link" href="/profile">Profile</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">My Follow</a>
+      <li class="nav-item" *ngIf="user.flag !== 'Admin'">
+        <a class="nav-link" href="/user/follow">My Follow</a>
       </li>
       <li class="nav-item dropdown" *ngIf="user.flag === 'Student'">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,10 +30,6 @@
         <a class="nav-link" href="#">My Answers</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
 

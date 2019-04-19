@@ -1,13 +1,24 @@
 var mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const questionSchema = require('../question/question.schema.server');
+const answerSchema = require('../answer/answer.schema.server');
+
+const user_Schema = new Schema({
+  username: String,
+  email: String,
+  url: String,
+  _id: String
+});
 
 var userSchema = mongoose.Schema({
   facebook: {
     id: String,
     token: String
   },
-  questions: [{type: mongoose.Schema.Types.ObjectId, ref: 'question'}],
-  answers: [{type: mongoose.Schema.Types.ObjectId, ref: 'answer'}],
-  subscribe: [{type: mongoose.Schema.Types.ObjectId, ref: 'userModel'}],
+  questions: [questionSchema],
+  answers: [answerSchema],
+  subscribe: [user_Schema],
   username: String,
   password: String,
   firstName:String,
