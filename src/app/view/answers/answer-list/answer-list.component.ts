@@ -16,13 +16,13 @@ import {UserService} from '../../../services/user.service.client';
 export class AnswerListComponent implements OnInit {
   qid: String;
   user: User;
-  question: Question;
-  answers: Array<Answer>;
+  question: any;
+  answers: Array<any>;
   constructor(private activeRouter: ActivatedRoute, private questionService: QuestionService, private answerService: AnswerService,
               private router: Router, private sharedService: SharedService, private userService: UserService) {
-    this.question = new Question('', '', '', '', '');
+    this.question = {};
     this.user = new User('', '', '', '', [], []);
-    this.answers = new Array<Answer>();
+    this.answers = new Array<any>();
   }
 
   checkAuthor(author) {
@@ -74,15 +74,16 @@ export class AnswerListComponent implements OnInit {
     this.user = this.sharedService.user;
     this.activeRouter.params.subscribe(params => {
       this.qid = params['qid'];
-      this.answerService.findAnswerByQuestionId(params['qid']).subscribe((answers: any) => {
-        if (answers) {
-          this.answers = answers;
-          console.log( 'answers:' + answers);
-        }
-      });
+      // this.answerService.findAnswerByQuestionId(params['qid']).subscribe((answers: any) => {
+      //   if (answers) {
+      //     this.answers = answers;
+      //     console.log( 'answers:' + answers);
+      //   }
+      // });
       this.questionService.findQuestionById(params['qid']).subscribe((question: any) => {
         if (question) {
           this.question = question;
+          this.answers = this.question.answers;
         }
       })
       console.log('question id: ' + this.qid);

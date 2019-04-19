@@ -32,14 +32,14 @@ export class AnswerService {
   }
 
   findAnswerByQuestionId(questionId)  {
-    return this.http.get<Array<Answer>>(this.baseUrl + '/api/question/' + questionId + '/answer').pipe(
+    return this.http.get<Array<any>>(this.baseUrl + '/api/question/' + questionId + '/answer').pipe(
       map((response) => {
         return response;
       }));
   }
 
   findAnswersByUser(userId) {
-    return this.http.get<Array<Answer>>(this.baseUrl + '/api/answer/' + userId).pipe(
+    return this.http.get<Array<Answer>>(this.baseUrl + '/api/answerForUser/' + userId).pipe(
       map((response) => {
         return response;
       }));

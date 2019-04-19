@@ -4,7 +4,7 @@ module.exports=function(app) {
 
   app.post("/api/question/:questionId/answer", createAnswer);
   app.get("/api/question/:questionId/answer", findAllAnswersForQuestion);
-  app.get("/api/answer/:userId", findAllAnswersForUser);
+  app.get("/api/answerForUser/:userId", findAllAnswersForUser);
   app.get("/api/answer/:answerId", findAnswerById);
   app.put("/api/answer/:answerId", updateAnswer);
   app.delete("/api/answer/:answerId", deleteAnswer);
