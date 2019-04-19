@@ -15,7 +15,8 @@ export class QuestionService {
     'findAnsweredQuestionsByUser' : this.findAnsweredQuestionsByUser,
     'findQuestionById' : this.findQuestionById,
     'updateQuestion' : this.updateQuestion,
-    'deleteQuestion' : this.deleteQuestion
+    'deleteQuestion' : this.deleteQuestion,
+    'findAllQuestions': this.findAllQuestions
   };
 
 
@@ -28,6 +29,10 @@ export class QuestionService {
       map((response) => {
         return response;
       }));
+  }
+
+  findAllQuestions() {
+    return this.http.get(this.baseUrl + '/api/allQuestion/');
   }
 
   findQuestionsByUser(userId) {

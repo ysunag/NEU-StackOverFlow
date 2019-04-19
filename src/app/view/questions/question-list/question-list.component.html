@@ -17,7 +17,7 @@
 <div class="container">
   <ul class="list-group cl-list-group-borderless cl-text-blue">
     <li *ngFor="let item of questions" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-      <a routerLink="/question/{{item._id}}/page" class="cl-text-blue">{{item.title}}</a>
+      <a routerLink="/question/{{item._id}}/answer" class="cl-text-blue">{{item.title}}</a>
       <a routerLink="/question/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
     </li>
   </ul>

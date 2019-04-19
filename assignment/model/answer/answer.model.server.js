@@ -29,20 +29,27 @@ function createAnswer(questionId,answer) {
 
 
 function findAllAnswersForQuestion(questionId) {
-  return answerModel.find({"questionId": questionId})
-  //.populate('developerId')
-    .populate('questionId', 'title')
-    .exec();
+  return answerModel.find({"questionId": questionId}).then(
+    function(answers) {
+      console.log(answers);
+      return answers;
+    }
+  );;
 }
 
 
 
 function findAnswerById(id) {
-  return answerModel.findOne({_id: id});
+  return answerModel.find({"_id": id}).then(
+    function(answer) {
+      console.log(answer);
+      return answer;
+    }
+  );
 }
 
 function findAllAnswersForUser(userId) {
-  return answerModel.find({"userId": userId}).then(
+  return answerModel.find({"author._id": userId}).then(
     function(answers) {
       console.log(answers);
       return answers;
@@ -79,7 +86,7 @@ function deleteAnswer(answerId) {
           //     return Answer._id !== AnswerId
           //   });
           //   question.save();
-          question.answers.pull({ _id: answerId });
+          question.answers.pull({ "_id": answerId });
           question.save();
             console.log('Answer removed from question');
             return responseAnswer;

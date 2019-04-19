@@ -25,20 +25,20 @@ export class AnswerListComponent implements OnInit {
     this.answers = new Array<Answer>();
   }
 
-  checkAuthor(answerId) {
-    return this.user._id === answerId;
+  checkAuthor(author) {
+    return this.user._id === author._id;
   }
 
-  follow(userId) {
-    this.user.subscribe.push(userId);
-    this.userService.updateUser(this.user, userId);
+  follow(user) {
+    this.user.subscribe.push(user);
+    this.userService.updateUser(this.user, user);
     this.sharedService.user = this.user;
   }
 
   unFollow(userId) {
     const following = this.user.subscribe;
     for ( let i = 0; i < following.length; i++) {
-      if ( following[i] === userId) {
+      if ( following[i]._id === userId) {
         following.splice(i, 1);
       }
     }
@@ -48,11 +48,26 @@ export class AnswerListComponent implements OnInit {
   }
 
   checkNotFollowed(userId) {
-    return !this.user.subscribe.includes(userId) && userId !== this.user._id;
+    const following = this.user.subscribe;
+    if (userId === this.user._id) {
+      return false;
+    }
+    for (let i = 0; i < following.length; i++) {
+      if (following[i]._id === userId) {
+        return false;
+      }
+    }
+    return true;
   }
 
   checkFollowed(userId) {
-    return this.user.subscribe.includes(userId);
+    const following = this.user.subscribe;
+    for (let i = 0; i < following.length; i++) {
+      if (following[i]._id === userId) {
+        return true;
+      }
+    }
+    return false;
   }
 
   ngOnInit() {
@@ -62,6 +77,7 @@ export class AnswerListComponent implements OnInit {
       this.answerService.findAnswerByQuestionId(params['qid']).subscribe((answers: any) => {
         if (answers) {
           this.answers = answers;
+          console.log( 'answers:' + answers);
         }
       });
       this.questionService.findQuestionById(params['qid']).subscribe((question: any) => {

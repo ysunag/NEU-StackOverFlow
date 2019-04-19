@@ -2,14 +2,13 @@ module.exports=function(app) {
 
 
   app.get("/api/user/:userId/question", findQuestionForUser);
-  app.get("/api/user/:userId/answeredQuestion", findAnsweredQuestionForUser);
   app.post("/api/user/:userId/question", createQuestion);
   app.delete("/api/question/:questionId", deleteQuestion);
   app.get("/api/question/:questionId", findQuestionById);
   app.put("/api/question/:questionId", updateQuestionById);
+  app.get("/api/allQuestion", getAllQuestion);
 
   const questionModel = require('../model/question/question.model.server');
-
 
 
   function findQuestionById(req, res) {
@@ -29,6 +28,20 @@ module.exports=function(app) {
   }
 
 
+  function getAllQuestion(req, res) {
+    questionModel.findAllQuestions()
+      .then(function(questions) {
+        console.log("find all questions");
+        res.json(questions);
+      }, function(error) {
+        if (error) {
+          console.log("find all question error" + error);
+        }
+      })
+  }
+
+
+
 
   function findQuestionForUser(req, res) {
     const userId = req.params['userId'];
@@ -44,23 +57,6 @@ module.exports=function(app) {
           res.send(error);
         }
       });
-
-  }
-
-  function findAnsweredQuestionForUser (req, res) {
-    const userId = req.params['userId'];
-
-    questionModel.findAnsweredQuestion(userId)
-      .then(function(questions) {
-        console.log("find answered questions by user id:" + questions);
-        res.json(questions);
-      }, function(error) {
-        if (error) {
-          console.log("Find answered questions by user id error:" + error);
-          res.send(error);
-        }
-      });
-
   }
 
 

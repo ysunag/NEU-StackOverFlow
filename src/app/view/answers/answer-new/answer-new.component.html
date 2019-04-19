@@ -1,14 +1,14 @@
 <nav class="navbar fixed-top cl-grey-navbar">
   <div class="container-fluid">
     <div>
-      <a routerLink="/question/{{qid}}/answer" class="navbar-brand cl-text-black cl-icon-padding">
+      <a routerLink="/questions/{{qid}}/answer" class="navbar-brand cl-text-black cl-icon-padding">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="navbar-brand cl-text-black cl-text-bold cl-text-grey" routerLink="#">
-         Edit
+        New Answer
       </a>
     </div>
-    <span (click)="UpdateAnswer()" class="navbar-brand cl-text-black float-right cl-icon-padding">
+    <span (click)="CreateAnswer()" class="navbar-brand cl-text-black float-right cl-icon-padding">
       <i class="fas fa-check"></i>
     </span>
   </div>
@@ -28,8 +28,7 @@
     <span class="help-block" *ngIf="!answerContent.valid && answerContent.touched">
           Please enter your answer!
     </span>
-  <a class="btn btn-danger  btn-block" (click)="DeleteAnswer()" routerLink="/question/{{qid}}/answer">Delete</a>
-    </form>
+  </form>
 
 </div>
 

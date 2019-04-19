@@ -8,9 +8,9 @@ const answerModel = require("../answer/answer.model.server");
 questionModel.createQuestionForUser = createQuestionForUser;
 questionModel.findAllQuestionsForUser = findAllQuestionsForUser;
 questionModel.findQuestionById = findQuestionById;
-questionModel.findAnsweredQuestion = findAnsweredQuestion;
 questionModel.updateQuestion = updateQuestion;
 questionModel.deleteQuestion = deleteQuestion;
+questionModel.findAllQuestions = findAllQuestions;
 
 module.exports = questionModel;
 
@@ -28,19 +28,10 @@ function createQuestionForUser(userId,question) {
     });
 }
 
-function findAnsweredQuestion(userId) {
-  answerModel.findAllAnswersForUser(userId)
-    .then(function (answers) {
-      let questions = [];
-      while(answers.hasNext()) {
-        const question = findQuestionById(answers.next().questionId);
-        questions.push(question);
-      }
-      return questions;
-  })
-    .catch(function (err) {
-      console.log("findAnsweredQuestionForUser error:" + err);
-    });
+
+
+function findAllQuestions() {
+  return questionModel.find({});
 }
 
 

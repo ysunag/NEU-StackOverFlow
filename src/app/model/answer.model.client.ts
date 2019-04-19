@@ -1,15 +1,19 @@
+import {Author} from './author.model.client';
+
 export class Answer {
   _id: String;
-  uid: String;
+  author: Author;
   detail: String;
   questionId: String;
+  questionTitle: String;
 
 
-  constructor(_id, detail, questionId, uid) {
+  constructor(_id, detail, questionId, author, questionTitle) {
     this._id = _id;
-    this.uid = uid;
+    this.author = author;
     this.detail = detail;
     this.questionId = questionId;
+    this.questionTitle = questionTitle;
   }
 
 }

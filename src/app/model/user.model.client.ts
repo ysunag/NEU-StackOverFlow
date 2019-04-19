@@ -1,4 +1,5 @@
 import {Question} from './question.model.client';
+import {Author} from './author.model.client';
 
 export class User {
   _id: String;
@@ -8,7 +9,7 @@ export class User {
   firstName: String;
   lastName: String;
   flag: String;
-  subscribe: Array<User>;
+  subscribe: Array<Author>;
   questions: Array<Question>;
 
   constructor(username, password, firstName, lastName, subscribe, questions) {

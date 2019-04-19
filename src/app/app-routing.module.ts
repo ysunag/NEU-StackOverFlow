@@ -17,6 +17,7 @@ import {RegisterAdminComponent} from './view/user/register-admin/register-admin.
 import {MainPageComponent} from './view/pages/main-page/main-page.component';
 import {AdminPageComponent} from './view/pages/admin-page/admin-page.component';
 import {MyFollowComponent} from './view/user/my-follow/my-follow.component';
+import {AnswerNewComponent} from './view/answers/answer-new/answer-new.component';
 
 const routes: Routes = [
   { path: '',  component: HomepageComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'profile/flickr', component: FlickrImageSearchComponent, canActivate: [AuthGuard]},
   {path: 'user/follow', component: MyFollowComponent, canActivate: [AuthGuard]},
+  { path: 'question/:qid/answer/new', component: AnswerNewComponent, canActivate: [AuthGuard]},
   { path: 'question/:qid/answer/:aid', component: AnswerEditComponent, canActivate: [AuthGuard]},
   { path: 'question/:qid/answer', component: AnswerListComponent, canActivate: [AuthGuard]},
   { path: 'question', component: QuestionListComponent, canActivate: [AuthGuard]},

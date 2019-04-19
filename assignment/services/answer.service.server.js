@@ -4,11 +4,12 @@ module.exports=function(app) {
 
   app.post("/api/question/:questionId/answer", createAnswer);
   app.get("/api/question/:questionId/answer", findAllAnswersForQuestion);
+  app.get("/api/answer/:userId", findAllAnswersForUser);
   app.get("/api/answer/:answerId", findAnswerById);
   app.put("/api/answer/:answerId", updateAnswer);
   app.delete("/api/answer/:answerId", deleteAnswer);
 
-  const answerModel = require('../model/answer/answer.model.server');
+  const answerModel = require('../model/answer/answer.model.server'); const questionModel = require('../model/question/question.model.server');
 
   function createAnswer(req, res){
     const questionId = req.params['questionId'];
@@ -34,7 +35,7 @@ module.exports=function(app) {
     answerModel
       .findAllAnswersForQuestion(questionId)
       .then(function (answers) {
-        console.log("find answers by question id:" + pages);
+        console.log("find answers by question id:" + answers);
         res.json(answers);
       }, function (error) {
         if (error) {
@@ -43,6 +44,26 @@ module.exports=function(app) {
         }
       });
   }
+
+  function findAllAnswersForUser(req, res) {
+    const userId = req.params['userId'];
+
+    answerModel
+      .findAllAnswersForUser(userId)
+      .then(function (answers) {
+        console.log("find answers by user id:" + answers);
+        res.json(answers);
+      }, function (error) {
+        if (error) {
+          console.log("Find answers by user id error:" + error);
+          res.send(error);
+        }
+      });
+
+  }
+
+
+
 
 
   function findAnswerById(req, res) {

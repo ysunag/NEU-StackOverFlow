@@ -29,6 +29,7 @@ import { MainPageComponent } from './view/pages/main-page/main-page.component';
 import { AdminPageComponent } from './view/pages/admin-page/admin-page.component';
 import {QuestionService} from './services/question.service.client';
 import { MyFollowComponent } from './view/user/my-follow/my-follow.component';
+import { AnswerNewComponent } from './view/answers/answer-new/answer-new.component';
 
 
 
@@ -50,6 +51,7 @@ import { MyFollowComponent } from './view/user/my-follow/my-follow.component';
     ProfileComponent,
     FlickrImageSearchComponent,
     MyFollowComponent,
+    AnswerNewComponent,
   ],
   imports: [
     BrowserModule,

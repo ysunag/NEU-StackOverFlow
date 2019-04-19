@@ -1,14 +1,14 @@
 <nav class="navbar fixed-top cl-blue-navbar">
   <div class="container-fluid">
     <div>
-      <a routerLink="/profile" class="navbar-brand cl-icon-padding cl-text-white">
+      <a routerLink="/questionAnswered" class="navbar-brand cl-icon-padding cl-text-white">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="cl-text-white navbar-brand cl-text-bold" routerLink="">
         answers
       </a>
     </div>
-    <a routerLink='/answer/new' class="navbar-brand cl-text-white">
+    <a routerLink='/question/{{qid}}/answer/new' class="navbar-brand cl-text-white">
       <i class="fas fa-plus"></i>
     </a>
   </div>
@@ -19,22 +19,21 @@
     <li *ngFor="let item of answers" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
       <div [innerHTML]="item.detail"></div>
       <div class="row">
-        <p></p>
-        <div class="ml-auto">
-          <div>
-              <span>
-                {{user.username}}
-              </span>
-            <span *ngIf="checkNotFollowed(item.uid)" (click)="follow(user._id)">
-                Follow
-              </span>
-            <span *ngIf="checkFollowed(item.uid)" (click)="unFollow(user._id)">
-                UnFollow
-              </span>
+              <!--<span>-->
+                <!--{{item.author.username}}-->
+              <!--</span>-->
+            <!--&lt;!&ndash;<span *ngIf="checkNotFollowed(item.author)" (click)="follow(item.author)">&ndash;&gt;-->
+                <!--<a class="btn btn-success  btn-block" *ngIf="checkNotFollowed(item.author)" (click)="follow(item.author)" routerLink="#">Follow</a>-->
+
+              <!--&lt;!&ndash;</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;<span *ngIf="checkFollowed(item.author)" (click)="unFollow(item.author)">&ndash;&gt;-->
+                <!--&lt;!&ndash;UnFollow&ndash;&gt;-->
+              <!--&lt;!&ndash;</span>&ndash;&gt;-->
+            <!--<a class="btn btn-danger  btn-block" *ngIf="checkFollowed(item.author)" (click)="unFollow(item.author)" routerLink="#">Unfollow</a>-->
           </div>
-          <a *ngIf="checkAuthor(item.uid)" routerLink="/question/{{item.questionId}}/answer/{{item._id}}" class="cl-text-blue"><span class="fas fa-edit"></span></a>
-        </div>
-      </div>
+          <a  routerLink="/question/{{qid}}/answer/{{item._id}}" class="cl-text-blue"><span class="fas fa-edit"></span></a>
+        <!--</div>-->
+      <!--</div>-->
     </li>
   </ul>
 </div>
