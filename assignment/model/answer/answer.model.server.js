@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const answerSchema = require('./answer.schema.server');
 
-const answerModel = mongoose.model("answer", answerSchema);
+const answerModel = mongoose.model("answerModel", answerSchema);
 const questionModel = require("../question/question.model.server");
 
 
@@ -12,11 +12,7 @@ answerModel.findAllAnswersForQuestion = findAllAnswersForQuestion;
 answerModel.findAnswerById = findAnswerById;
 answerModel.updateAnswer = updateAnswer;
 answerModel.deleteAnswer = deleteAnswer;
-
-
-module.exports = answerModel;
-
-
+answerModel.findAllAnswersForUser = findAllAnswersForUser;
 
 
 function createAnswer(questionId,answer) {
@@ -43,6 +39,15 @@ function findAllAnswersForQuestion(questionId) {
 
 function findAnswerById(id) {
   return answerModel.findOne({_id: id});
+}
+
+function findAllAnswersForUser(userId) {
+  return answerModel.find({"userId": userId}).then(
+    function(answers) {
+      console.log(answers);
+      return answers;
+    }
+  );
 }
 
 
@@ -85,3 +90,6 @@ function deleteAnswer(answerId) {
         });
     });
 }
+
+module.exports = answerModel;
+

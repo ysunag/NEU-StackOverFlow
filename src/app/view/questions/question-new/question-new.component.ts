@@ -17,7 +17,10 @@ export class QuestionNewComponent implements OnInit {
   errorFlag: boolean;
   errorMsg = 'Invalid question name!';
 
-  constructor(private activateRouter: ActivatedRoute, private questionService: QuestionService, private router: Router, private sharedService: SharedService ) { this.errorFlag = false; }
+  constructor(private activateRouter: ActivatedRoute, private questionService: QuestionService, private router: Router, private sharedService: SharedService ) {
+    this.errorFlag = false;
+    this.questions = new Array<Question>();
+  }
 
   CreateQuestion() {
     console.log(this.question.title);
@@ -45,6 +48,7 @@ export class QuestionNewComponent implements OnInit {
       this.questionService.findQuestionsByUser(this.uid).subscribe((questions: any) => {
         if (questions) {
           this.questions = questions;
+          this.sharedService.user.questions = questions;
         }
       });
       console.log('user id: ' + this.uid);

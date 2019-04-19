@@ -27,6 +27,7 @@ import { HomepageComponent } from './view/pages/homepage/homepage.component';
 import { RegisterAdminComponent } from './view/user/register-admin/register-admin.component';
 import { MainPageComponent } from './view/pages/main-page/main-page.component';
 import { AdminPageComponent } from './view/pages/admin-page/admin-page.component';
+import {QuestionService} from './services/question.service.client';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { AdminPageComponent } from './view/pages/admin-page/admin-page.component
     HttpClientModule,
     FormsModule,
   ],
-  providers: [AnswerService, SharedService, FlickrService, UserService, AuthGuard],
+  providers: [AnswerService, SharedService, FlickrService, UserService, AuthGuard, QuestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

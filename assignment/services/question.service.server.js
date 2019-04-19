@@ -11,6 +11,7 @@ module.exports=function(app) {
   const questionModel = require('../model/question/question.model.server');
 
 
+
   function findQuestionById(req, res) {
     const questionId = req.params['questionId'];
 
@@ -49,8 +50,7 @@ module.exports=function(app) {
   function findAnsweredQuestionForUser (req, res) {
     const userId = req.params['userId'];
 
-    questionModel
-      .findAnsweredQuestionForUser(userId)
+    questionModel.findAnsweredQuestion(userId)
       .then(function(questions) {
         console.log("find answered questions by user id:" + questions);
         res.json(questions);

@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
 const questionSchema = require('./question.schema.server');
 
-const questionModel = mongoose.model("question",questionSchema);
+const questionModel = mongoose.model("questionModel",questionSchema);
 const userModel = require("../user/user.model.server");
 const answerModel = require("../answer/answer.model.server");
-
-
 
 questionModel.createQuestionForUser = createQuestionForUser;
 questionModel.findAllQuestionsForUser = findAllQuestionsForUser;
 questionModel.findQuestionById = findQuestionById;
-questionModel.findAnsweredQuestionForUser = findAnsweredQuestionForUser;
+questionModel.findAnsweredQuestion = findAnsweredQuestion;
 questionModel.updateQuestion = updateQuestion;
 questionModel.deleteQuestion = deleteQuestion;
 
@@ -24,18 +22,18 @@ function createQuestionForUser(userId,question) {
     .then(function(responseQuestion){
       userModel.findUserById(userId)
         .then(function(user){
-          user.Questions.push(responsequestion);
+          user.questions.push(responseQuestion);
           user.save();
         })
     });
 }
 
-function findAnsweredQuestionForUser(userId) {
-  return answerModel.find({"userId": userId})
+function findAnsweredQuestion(userId) {
+  answerModel.findAllAnswersForUser(userId)
     .then(function (answers) {
       let questions = [];
       while(answers.hasNext()) {
-        const question = findquestionById(answers.next().questionId);
+        const question = findQuestionById(answers.next().questionId);
         questions.push(question);
       }
       return questions;
@@ -48,9 +46,7 @@ function findAnsweredQuestionForUser(userId) {
 
 
 function findAllQuestionsForUser(userId) {
-  return questionModel.find({"userId": userId})
-    .populate('userId', 'username')
-    .exec();
+  return questionModel.find({"userId": userId});
 }
 
 

@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {Question} from '../../../model/question.model.client';
+import {Answer} from '../../../model/answer.model.client';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AnswerService} from '../../../services/answer.service.client';
+import {SharedService} from '../../../services/shared.service.client';
+import {QuestionService} from '../../../services/question.service.client';
+import {User} from '../../../model/user.model.client';
+import {UserService} from '../../../services/user.service.client';
 
 @Component({
   selector: 'app-answer-list',
@@ -6,10 +14,63 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./answer-list.component.css']
 })
 export class AnswerListComponent implements OnInit {
+  qid: String;
+  user: User;
+  question: Question;
+  answers: Array<Answer>;
+  constructor(private activeRouter: ActivatedRoute, private questionService: QuestionService, private answerService: AnswerService,
+              private router: Router, private sharedService: SharedService, private userService: UserService) {
+    this.question = new Question('', '', '', '', '');
+    this.user = new User('', '', '', '', [], []);
+    this.answers = new Array<Answer>();
+  }
 
-  constructor() { }
+  checkAuthor(answerId) {
+    return this.user._id === answerId;
+  }
+
+  follow(userId) {
+    this.user.subscribe.push(userId);
+    this.userService.updateUser(this.user, userId);
+    this.sharedService.user = this.user;
+  }
+
+  unFollow(userId) {
+    const following = this.user.subscribe;
+    for ( let i = 0; i < following.length; i++) {
+      if ( following[i] === userId) {
+        following.splice(i, 1);
+      }
+    }
+    this.user.subscribe = following;
+    this.userService.updateUser(this.user, userId);
+    this.sharedService.user = this.user;
+  }
+
+  checkNotFollowed(userId) {
+    return !this.user.subscribe.includes(userId) && userId !== this.user._id;
+  }
+
+  checkFollowed(userId) {
+    return this.user.subscribe.includes(userId);
+  }
 
   ngOnInit() {
+    this.user = this.sharedService.user;
+    this.activeRouter.params.subscribe(params => {
+      this.qid = params['qid'];
+      this.answerService.findAnswerByQuestionId(params['qid']).subscribe((answers: any) => {
+        if (answers) {
+          this.answers = answers;
+        }
+      });
+      this.questionService.findQuestionById(params['qid']).subscribe((question: any) => {
+        if (question) {
+          this.question = question;
+        }
+      })
+      console.log('question id: ' + this.qid);
+    });
   }
 
 }

@@ -14,6 +14,7 @@ export class QuestionListComponent implements OnInit {
   questions: Array<Question>;
 
   constructor(private router: ActivatedRoute, private questionService: QuestionService, private sharedService: SharedService) {
+    this.questions = new Array<Question>();
   }
 
   ngOnInit() {
@@ -21,10 +22,13 @@ export class QuestionListComponent implements OnInit {
       this.questionService.findQuestionsByUser(this.sharedService.user._id).subscribe((questions: any) => {
         if (questions) {
           this.questions = questions;
-          this.sharedService.user.questions = questions;
         }
       });
       console.log('user id: ' + this.sharedService.user._id);
     });
+  }
+
+  checkIfStudent() {
+    return this.sharedService.user.flag === 'Student';
   }
 }

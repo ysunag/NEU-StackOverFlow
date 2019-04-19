@@ -28,9 +28,9 @@ const routes: Routes = [
   {path: 'profile/flickr', component: FlickrImageSearchComponent, canActivate: [AuthGuard]},
   { path: 'question/:qid/answer/:aid', component: AnswerEditComponent, canActivate: [AuthGuard]},
   { path: 'question/:qid/answer', component: AnswerListComponent, canActivate: [AuthGuard]},
-  { path: 'question/:qid', component: QuestionEditComponent, canActivate: [AuthGuard]},
   { path: 'question', component: QuestionListComponent, canActivate: [AuthGuard]},
   { path: 'question/new', component: QuestionNewComponent, canActivate: [AuthGuard]},
+  { path: 'question/:qid', component: QuestionEditComponent, canActivate: [AuthGuard]},
   { path: 'questionAnswered', component: QuestionAnsweredComponent, canActivate: [AuthGuard]},
 ];
 

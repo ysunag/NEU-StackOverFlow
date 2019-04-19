@@ -1,3 +1,48 @@
-<p>
-  answer-list works!
-</p>
+<nav class="navbar fixed-top cl-blue-navbar">
+  <div class="container-fluid">
+    <div>
+      <a routerLink="/profile" class="navbar-brand cl-icon-padding cl-text-white">
+        <i class="fas fa-angle-left"></i>
+      </a>
+      <a class="cl-text-white navbar-brand cl-text-bold" routerLink="">
+        answers
+      </a>
+    </div>
+    <a routerLink='/answer/new' class="navbar-brand cl-text-white">
+      <i class="fas fa-plus"></i>
+    </a>
+  </div>
+</nav>
+
+<div class="container">
+  <ul class="list-group cl-list-group-borderless cl-text-blue">
+    <li *ngFor="let item of answers" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
+      <div [innerHTML]="item.detail"></div>
+      <div class="row">
+        <p></p>
+        <div class="ml-auto">
+          <div>
+              <span>
+                {{user.username}}
+              </span>
+            <span *ngIf="checkNotFollowed(item.uid)" (click)="follow(user._id)">
+                Follow
+              </span>
+            <span *ngIf="checkFollowed(item.uid)" (click)="unFollow(user._id)">
+                UnFollow
+              </span>
+          </div>
+          <a *ngIf="checkAuthor(item.uid)" routerLink="/question/{{item.questionId}}/answer/{{item._id}}" class="cl-text-blue"><span class="fas fa-edit"></span></a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<nav class="navbar fixed-bottom cl-blue-navbar">
+  <div class="container-fluid justify-content-end">
+    <a routerLink="/profile" class="navbar-brand cl-text-white cl-icon-padding">
+      <span class="fas fa-user"></span>
+    </a>
+  </div>
+</nav>
