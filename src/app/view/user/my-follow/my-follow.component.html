@@ -24,14 +24,14 @@
           Questions and answers
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">My Question</a>
-          <a class="dropdown-item" href="#">My Answer</a>
+          <a class="dropdown-item" href="/question">My Question</a>
+          <a class="dropdown-item" href="/questionAnswered">My Answer</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Post new Question</a>
+          <a class="dropdown-item" href="/question/new"><span class="fa fa-plus"></span> Post new Question</a>
         </div>
       </li>
       <li class="nav-item" *ngIf="user.flag === 'Teacher'">
-        <a class="nav-link" href="#">My Answers</a>
+        <a class="nav-link" href="/questionAnswered">My Answers</a>
       </li>
     </ul>
   </div>

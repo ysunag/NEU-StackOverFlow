@@ -25,22 +25,23 @@
           Questions and answers
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">My Question</a>
-          <a class="dropdown-item" href="#">My Answer</a>
+          <a class="dropdown-item" href="/question">My Question</a>
+          <a class="dropdown-item" href="/questionAnswered">My Answer</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#"><span class="fa fa-plus"></span> Post new Question</a>
+          <a class="dropdown-item" href="/question/new"><span class="fa fa-plus"></span> Post new Question</a>
         </div>
       </li>
       <li class="nav-item" *ngIf="user.flag === 'Teacher'">
-        <a class="nav-link" href="#">My Answers</a>
+        <a class="nav-link" href="/questionAnswered">My Answers</a>
       </li>
     </ul>
   </div>
 </nav>
 
 <div class="container main">
-  <ul class="list-group cl-list-group-borderless">
-    <li class="list-group-item cl-list-item-borderless"  *ngFor = "let user of userList; index as i">
+  <h4>All users:</h4>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"  *ngFor = "let user of userList; index as i">
       <a [routerLink]="['/profile', user._id]">{{user.username}}</a>
     </li>
   </ul>
