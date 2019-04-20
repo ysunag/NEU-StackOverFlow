@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="/">NeuSOF</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -15,8 +16,12 @@
       <li class="nav-item" *ngIf="user.flag !== 'Admin'">
         <a class="nav-link" href="/user/follow">My Follow</a>
       </li>
+      <li class="nav-item" *ngIf="user.flag === 'Admin'">
+        <a class="nav-link" href="/admin">Admin</a>
+      </li>
       <li class="nav-item dropdown" *ngIf="user.flag === 'Student'">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
           Questions and answers
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -38,10 +43,12 @@
     <div class="form-group">
       <label for="avatar">
         <h5>Avatar</h5>
-        <h6 class="subtitle">(Click picture to search and change avatar)</h6>
+        <h6 class="subtitle" *ngIf="inAdminMode !== true">(Click picture to search and change avatar)</h6>
       </label>
       <div>
-        <img src="{{user.url}}" id='avatar' alt="Avatar" class="avatar" routerLink="/profile/flickr">
+        <img src="{{user.url}}" id='avatar' alt="Avatar" class="avatar" routerLink="/profile/flickr"
+             *ngIf="inAdminMode !== true">
+        <img src="{{user.url}}" id='avatar' alt="Avatar" class="avatar" *ngIf="inAdminMode === true">
       </div>
     </div>
 
@@ -74,12 +81,12 @@
     </div>
 
     <!--<form ngNoForm action="{{baseUrl}}api/upload" method="post" enctype="multipart/form-data">-->
-      <!--<label for="myFile"><h5>Upload Avatar Image</h5></label>-->
-      <!--<input  name="myFile" id="myFile"  type="file" class="form-control form-group"/>-->
-      <!--<input  class="form-inline" name="userId" value="{{user._id}}" style="display: none"/>-->
-      <!--<div class="form-group inter-button">-->
-        <!--<button type="submit" class="btn btn-block btn-primary inter-button">Upload</button>-->
-      <!--</div>-->
+    <!--<label for="myFile"><h5>Upload Avatar Image</h5></label>-->
+    <!--<input  name="myFile" id="myFile"  type="file" class="form-control form-group"/>-->
+    <!--<input  class="form-inline" name="userId" value="{{user._id}}" style="display: none"/>-->
+    <!--<div class="form-group inter-button">-->
+    <!--<button type="submit" class="btn btn-block btn-primary inter-button">Upload</button>-->
+    <!--</div>-->
     <!--</form>-->
 
 
@@ -90,10 +97,15 @@
     </div>
 
     <div class="form-group inter-button">
-      <button routerLink="/login" (click)="deleteUser()" class="btn btn-danger btn-block">Delete User</button>
+      <button routerLink="/login" (click)="deleteUser()" class="btn btn-danger btn-block" *ngIf="inAdminMode !== true">
+        Delete User
+      </button>
+      <button routerLink="/admin" (click)="deleteUser()" class="btn btn-danger btn-block" *ngIf="inAdminMode === true">
+        Delete User
+      </button>
     </div>
 
-    <div class="form-group inter-button">
+    <div class="form-group inter-button" *ngIf="inAdminMode !== true">
       <button class="btn btn-danger btn-block" (click)="logout()">Logout</button>
     </div>
 

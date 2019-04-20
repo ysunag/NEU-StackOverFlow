@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="/">NeuSOF</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -15,8 +16,12 @@
       <li class="nav-item" *ngIf="user.flag !== 'Admin'">
         <a class="nav-link" href="/user/follow">My Follow</a>
       </li>
+      <li class="nav-item" *ngIf="user.flag === 'Admin'">
+        <a class="nav-link active" href="/admin">Admin</a>
+      </li>
       <li class="nav-item dropdown" *ngIf="user.flag === 'Student'">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
           Questions and answers
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -32,3 +37,11 @@
     </ul>
   </div>
 </nav>
+
+<div class="container main">
+  <ul class="list-group cl-list-group-borderless">
+    <li class="list-group-item cl-list-item-borderless"  *ngFor = "let user of userList; index as i">
+      <a [routerLink]="['/profile', user._id]">{{user.username}}</a>
+    </li>
+  </ul>
+</div>

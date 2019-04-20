@@ -79,7 +79,11 @@ export class UserService {
   }
 
   alluser() {
-    return this.http.get(this.baseUrl + '/api/user/' + '/alluser');
+    return this.http.get(this.baseUrl + '/api/alluser');
+  }
+
+  findUserById(userId) {
+    return this.http.get(this.baseUrl + '/api/user/' + userId);
   }
 
   findFollowusers(userId) {

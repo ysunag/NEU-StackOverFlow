@@ -7,19 +7,23 @@ import {Router} from '@angular/router';
 import {SharedService} from '../../../services/shared.service.client';
 import {environment} from '../../../../environments/environment';
 
-
 @Component({
-  selector: 'app-profile',
+  selector: 'app-profile-edit',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileEditComponent implements OnInit {
   user: User;
+  uid: String;
   baseUrl = environment.baseUrl;
   inAdminMode: boolean;
 
   @ViewChild('inputForm') createForm: NgForm;
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private sharedService: SharedService) { }
+  constructor(private activeRouter: ActivatedRoute,
+              private userService: UserService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private sharedService: SharedService) { }
 
   updateUser() {
     const newUser = {
@@ -28,6 +32,7 @@ export class ProfileComponent implements OnInit {
       lastName: this.user.lastName,
       email: this.user.email,
     };
+
     return this.userService.updateUser(newUser, this.user._id).subscribe((user: User) => {
       this.user.username = user.username;
       this.user.firstName = user.firstName;
@@ -38,23 +43,19 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.sharedService.user;
-    this.inAdminMode = false;
-  }
-
-  deleteUser() {
-    this.userService.deleteUser(this.user._id).subscribe(() => {
-      this.logout();
+    this.activeRouter.params.subscribe(params => {
+      this.inAdminMode = true;
+      this.uid = params['uid'];
+      this.userService.findUserById(this.uid).subscribe((user: User) => {
+        this.user = user;
+        this.user.flag = 'Admin';
+      });
     });
   }
 
-  logout() {
-    this.userService.logout()
-      .subscribe(
-        (data: any) => {
-          this.sharedService.user = '';
-          this.router.navigate(['/login']);
-        }
-      );
+  deleteUser() {
+    this.userService.deleteUser(this.user._id).subscribe(() => {});
   }
+
 
 }

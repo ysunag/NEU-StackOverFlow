@@ -30,6 +30,7 @@ import { AdminPageComponent } from './view/pages/admin-page/admin-page.component
 import {QuestionService} from './services/question.service.client';
 import { MyFollowComponent } from './view/user/my-follow/my-follow.component';
 import { AnswerNewComponent } from './view/answers/answer-new/answer-new.component';
+import {ProfileEditComponent} from './view/user/profile/profile-edit.component';
 
 
 
@@ -52,6 +53,7 @@ import { AnswerNewComponent } from './view/answers/answer-new/answer-new.compone
     FlickrImageSearchComponent,
     MyFollowComponent,
     AnswerNewComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,
