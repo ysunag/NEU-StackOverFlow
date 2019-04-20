@@ -3,6 +3,7 @@ import {Author} from './author.model.client';
 
 export class User {
   _id: String;
+  url: String;
   username: String;
   password: String;
   email: String;

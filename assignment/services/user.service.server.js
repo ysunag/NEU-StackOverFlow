@@ -17,7 +17,10 @@ module.exports = function (app) {
   clientID : process.env.FACEBOOK_CLIENT_ID,// '2356209677946197'
   clientSecret : process.env.FACEBOOK_CLIENT_SECRET,//'f703c6a374da5f683dd13f043ebc54be'
   callbackURL : process.env.FACEBOOK_CALLBACK_URL, //'mongodb://heroku_xlvc3rq2:v9glk7aplstlil9vqr10ntiaek@ds113815.mlab.com:13815/heroku_xlvc3rq2'//
-};
+  //   clientID :'2356209677946197',
+  //   clientSecret :'f703c6a374da5f683dd13f043ebc54be',
+  //   callbackURL :'mongodb://heroku_xlvc3rq2:v9glk7aplstlil9vqr10ntiaek@ds113815.mlab.com:13815/heroku_xlvc3rq2'
+  };
 
   passport.use(new LocalStrategy(localStrategy));
   passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
