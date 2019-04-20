@@ -22,18 +22,21 @@
       </div>
       <div class="card-body">
         <h4 class="card-title">{{question.title}}</h4>
-        <!--<h6 class="card-subtitle mb-2 text-muted">Emilia-Romagna Region, Italy</h6>-->
         <p class="card-text">{{question.detail}}</p>
+        <a *ngIf="user.flag === 'Admin'" routerLink="/question/{{qid}}" class="cl-text-black float-right">
+          <span class="fas fa-edit" ></span>
+        </a>
       </div>
     </div>
   </div>
   <ul class="list-group cl-list-group-borderless cl-text-black">
     <li *ngFor="let item of answers" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-
       <div class="card cl-full-width">
         <div class="card-body">
           <p class="card-text">{{item.detail}}</p>
-          <a *ngIf="checkAuthor(item.author)" routerLink="/question/{{qid}}/answer/{{item._id}}" class="cl-text-black float-right"><span class="fas fa-edit"></span></a>
+          <a *ngIf="checkAuthor(item.author) || user.flag === 'Admin'"
+             routerLink="/question/{{qid}}/answer/{{item._id}}" class="cl-text-black float-right"><span
+            class="fas fa-edit"></span></a>
         </div>
         <div class="card-footer text-right">
           {{item.author.username}}
@@ -41,20 +44,6 @@
           <i class="fas fa-user-slash" *ngIf="checkFollowed(item.author._id)" (click)="unFollow(item.author._id)"></i>
         </div>
       </div>
-
-
-      <!--<div [innerHTML]="item.detail"></div>-->
-      <!--<div class="row">-->
-              <!--<span>-->
-                <!--{{item.author.username}}-->
-              <!--</span>-->
-            <!--&lt;!&ndash;<span *ngIf="checkNotFollowed(item.author)" (click)="follow(item.author)">&ndash;&gt;-->
-                <!--<span class="btn btn-success  btn-block" *ngIf="checkNotFollowed(item.author._id)" (click)="follow(item.author)">Follow</span>-->
-            <!--<span class="btn btn-danger  btn-block" *ngIf="checkFollowed(item.author._id)" (click)="unFollow(item.author._id)">Unfollow</span>-->
-          <!--</div>-->
-          <!--<a  *ngIf="checkAuthor(item.author)" routerLink="/question/{{qid}}/answer/{{item._id}}" class="cl-text-black"><span class="fas fa-edit"></span></a>-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
     </li>
   </ul>
 </div>
