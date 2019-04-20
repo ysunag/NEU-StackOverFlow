@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <div>
-      <a routerLink="/questionAnswered" class="navbar-brand cl-icon-padding cl-text-white">
+      <a routerLink="/main" class="navbar-brand cl-icon-padding cl-text-white">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="cl-text-white navbar-brand cl-text-bold" routerLink="">
         answers
       </a>
     </div>
-    <a routerLink='/question/{{qid}}/answer/new' class="navbar-brand cl-text-white">
+    <a *ngIf="user.flag !== 'Guest'" routerLink='/question/{{qid}}/answer/new' class="navbar-brand cl-text-white">
       <i class="fas fa-plus"></i>
     </a>
   </div>

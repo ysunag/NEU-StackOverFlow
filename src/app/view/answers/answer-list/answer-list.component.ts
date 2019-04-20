@@ -32,8 +32,8 @@ export class AnswerListComponent implements OnInit {
   follow(user) {
     this.user.subscribe.push(user);
     console.log('start follow ' + user._id);
-   // this.userService.followuser(this.user._id, user._id);
-    this.userService.updateUser(this.user, user._id);
+    this.userService.followuser(this.user._id, user._id).subscribe((res) => console.log(res));
+   // this.userService.updateUser(this.user, user._id).subscribe((res) => console.log(res));
     this.sharedService.user = this.user;
   }
 
@@ -46,7 +46,7 @@ export class AnswerListComponent implements OnInit {
     }
     this.user.subscribe = following;
     // this.userService.updateUser(this.user, userId);
-    this.userService.unfollow(this.user._id, userId);
+    this.userService.unfollow(this.user._id, userId).subscribe((res) => console.log(res));;
     this.sharedService.user = this.user;
   }
 

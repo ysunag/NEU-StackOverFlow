@@ -112,8 +112,8 @@ module.exports = function (app) {
 
   app.post ("/api/upload", upload.single('myFile'), uploadImage);
   app.get("/api/user/:userId/followlist", findFollowusers);
-  app.post("/api/user/:userId/follow", followuser);
-  app.post("/api/user/:userId/unfollow", unFollowUser);
+  app.put("/api/user/:userId/follow", followuser);
+  app.put("/api/user/:userId/unfollow", unFollowUser);
   app.get("/api/user/alluser", alluser);
 
   function login(req, res) {

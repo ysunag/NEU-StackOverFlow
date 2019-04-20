@@ -68,14 +68,14 @@ export class UserService {
       followId : followId
     };
     console.log(this.baseUrl + '/api/user/' + userId + '/follow');
-    return this.http.post(this.baseUrl + '/api/user/' + userId + '/follow', body, this.options);
+    return this.http.put(this.baseUrl + '/api/user/' + userId + '/follow', body);
   }
 
   unfollow(userId, unFollowId) {
     const body = {
       unFollowId : unFollowId
     };
-    return this.http.post(this.baseUrl + '/api/user/' + userId + '/unfollow', body, this.options);
+    return this.http.put(this.baseUrl + '/api/user/' + userId + '/unfollow', body);
   }
 
   alluser() {
