@@ -99,6 +99,7 @@ module.exports = function (app) {
   app.post ('/api/loggedIn', loggedIn);
 
   app.post("/api/user", createUser);
+  app.get("/api/alluser", alluser);
   app.get("/api/user", findUserByCredentials);
   app.get("/api/user/:userId", findUserById);
   app.put("/api/user/:userId", updateUserById);
@@ -114,7 +115,6 @@ module.exports = function (app) {
   app.get("/api/user/:userId/followlist", findFollowusers);
   app.post("/api/user/:userId/follow", followuser);
   app.post("/api/user/:userId/unfollow", unFollowUser);
-  app.get("/api/user/alluser", alluser);
 
   function login(req, res) {
     var user = req.user;

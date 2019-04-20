@@ -10,6 +10,7 @@ import {QuestionNewComponent} from './view/questions/question-new/question-new.c
 import {LoginComponent} from './view/user/login/login.component';
 import {RegisterComponent} from './view/user/register/register.component';
 import {ProfileComponent} from './view/user/profile/profile.component';
+import {ProfileEditComponent} from './view/user/profile/profile-edit.component';
 import {FlickrImageSearchComponent} from './view/user/profile/flickr-image-search/flickr-image-search.component';
 import {AuthGuard} from './services/auth-guard.service';
 import {HomepageComponent} from './view/pages/homepage/homepage.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'main', component: MainPageComponent, canActivate: [AuthGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'profile/:uid', component: ProfileEditComponent, canActivate: [AuthGuard]},
   {path: 'profile/flickr', component: FlickrImageSearchComponent, canActivate: [AuthGuard]},
   {path: 'user/follow', component: MyFollowComponent, canActivate: [AuthGuard]},
   { path: 'question/:qid/answer/:aid', component: AnswerEditComponent, canActivate: [AuthGuard]},

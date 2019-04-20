@@ -28,6 +28,7 @@ import { RegisterAdminComponent } from './view/user/register-admin/register-admi
 import { MainPageComponent } from './view/pages/main-page/main-page.component';
 import { AdminPageComponent } from './view/pages/admin-page/admin-page.component';
 import { MyFollowComponent } from './view/user/my-follow/my-follow.component';
+import {ProfileEditComponent} from './view/user/profile/profile-edit.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { MyFollowComponent } from './view/user/my-follow/my-follow.component';
     ProfileComponent,
     FlickrImageSearchComponent,
     MyFollowComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,
