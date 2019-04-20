@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Question} from '../../../model/question.model.client';
 import {ActivatedRoute} from '@angular/router';
 import {QuestionService} from '../../../services/question.service.client';
 import {SharedService} from '../../../services/shared.service.client';
@@ -22,9 +21,15 @@ export class QuestionAnsweredComponent implements OnInit {
 
   ngOnInit() {
     this.router.params.subscribe(params => {
-
+      const items = new Set();
       this.answerService.findAnswersByUser(this.sharedService.user._id).subscribe((answers: Array<Answer>) => {
-        this.answers = answers;
+        answers.forEach((item) => {
+          if (!items.has(item.questionId)) {
+            this.answers.push(item);
+            items.add(item.questionId);
+            console.log(item);
+          }
+        }) ;
         console.log('user id: ' + this.sharedService.user._id);
       });
     });

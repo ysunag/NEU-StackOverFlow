@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top cl-blue-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <div>
       <a routerLink="/main" class="navbar-brand cl-icon-padding cl-text-white">
@@ -14,16 +14,17 @@
   </div>
 </nav>
 
-<div class="container">
-  <ul class="list-group cl-list-group-borderless cl-text-blue">
+<div class="container cl-container-padding">
+  <ul class="list-group cl-list-group-borderless cl-text-black">
     <li *ngFor="let item of questions" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-      <a routerLink="/question/{{item._id}}/answer" class="cl-text-blue">{{item.title}}</a>
-      <a routerLink="/question/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
+      <a routerLink="/question/{{item._id}}/answer" class="cl-text-black">{{item.title}}</a>
+      <a routerLink="/question/{{item._id}}" class="cl-text-black"><span class="fas fa-cog"></span></a>
     </li>
   </ul>
 </div>
 
-<nav class="navbar fixed-bottom cl-blue-navbar">
+<!--<nav class="navbar fixed-bottom cl-blue-navbar">-->
+<nav class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid justify-content-end">
     <a routerLink="/profile" class="navbar-brand cl-text-white cl-icon-padding">
       <span class="fas fa-user"></span>

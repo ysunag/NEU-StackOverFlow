@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top cl-grey-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <div>
       <a routerLink="/questions/{{qid}}/answer" class="navbar-brand cl-text-black cl-icon-padding">
@@ -15,13 +15,15 @@
 </nav>
 
 
-<div class="container">
+<div class="container cl-container-padding">
   <div *ngIf="errorFlag" class="alert alert-danger">
     {{errorMsg}}
   </div>
   <form>
     <div class="form-group">
-      <label for="answer-description">Your Answer</label>
+      <label for="answer-description">
+        <h5>Your Answer</h5>
+      </label>
       <textarea [(ngModel)]="answer.detail" name="answer-description" id="answer-description" class="form-control" rows="5"
                 placeholder="In my opinion...."  required #answerContent="ngModel"></textarea>
     </div>
@@ -32,9 +34,10 @@
 
 </div>
 
-<nav class="navbar fixed-bottom cl-grey-navbar">
+<!--<nav class="navbar fixed-bottom cl-grey-navbar">-->
+<nav class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid justify-content-end">
-    <a routerLink="/profile" class="navbar-brand cl-icon-padding cl-text-blue">
+    <a routerLink="/profile" class="navbar-brand cl-icon-padding cl-text-black">
       <span class="fas fa-user"></span>
     </a>
   </div>
