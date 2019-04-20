@@ -135,5 +135,9 @@ a:hover{
   padding-right: 15px;
 }
 
+.cl-question-padding {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 /* You can add global styles to this file, and also import other style files */

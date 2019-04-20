@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {User} from '../model/user.model.client';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SharedService} from './shared.service.client';
@@ -64,9 +63,11 @@ export class UserService {
   }
 
   followuser(userId, followId) {
+    console.log('client service follow user!');
     const body = {
       followId : followId
     };
+    console.log(this.baseUrl + '/api/user/' + userId + '/follow');
     return this.http.post(this.baseUrl + '/api/user/' + userId + '/follow', body, this.options);
   }
 

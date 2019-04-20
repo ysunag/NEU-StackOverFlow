@@ -50,7 +50,6 @@ export class AnswerEditComponent implements OnInit {
   DeleteAnswer() {
     console.log(this.answer.detail);
     console.log(this.answer.questionId);
-    this.answerService.deleteAnswer(this.answer._id);
     this.activeRouter.params.subscribe(params => {
       return this.answerService.deleteAnswer(this.answer._id)
         .subscribe((pages: any) => {});

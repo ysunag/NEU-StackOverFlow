@@ -9,7 +9,7 @@ export class User {
   firstName: String;
   lastName: String;
   flag: String;
-  subscribe: Array<Author>;
+  subscribe: [Author];
   questions: Array<Question>;
 
   constructor(username, password, firstName, lastName, subscribe, questions) {

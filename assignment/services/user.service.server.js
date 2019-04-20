@@ -187,6 +187,7 @@ module.exports = function (app) {
   function updateUserById(req, res){
     var userId = req.params['userId'];
     var user = req.body;
+    console.log('update user' + userId);
 
     userModel.updateUser(userId, user)
       .then(function(status){
@@ -264,8 +265,11 @@ module.exports = function (app) {
   }
 
   function followuser(req, res) {
+    console.log("server-side follow user");
     var userId = req.params["userId"];
+    console.log('current user:' + userId);
     var followId = req.body.followId;
+    console.log('followed user: '+followId);
     userModel.findUserById(followId).then(function (followUser){
       userModel.findUserById(userId).then(function (user) {
         const respUser = {

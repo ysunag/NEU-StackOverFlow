@@ -10,7 +10,7 @@ const user_Schema = new Schema({
 
 const answerSchema = mongoose.Schema({
   detail: String,
-  author: [user_Schema],
+  author: user_Schema,
   questionTitle: String,
   questionId: {type: mongoose.Schema.ObjectId, ref: "question"},
   dateCreated: {type: Date, default: Date.now()}

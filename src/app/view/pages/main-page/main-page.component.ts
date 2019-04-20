@@ -30,4 +30,8 @@ export class MainPageComponent implements OnInit {
     });
   }
 
+  checkAuthor(authorId) {
+    return this.user._id === authorId;
+  }
+
 }
