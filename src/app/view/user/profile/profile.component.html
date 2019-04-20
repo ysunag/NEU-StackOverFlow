@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">NeuSOF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/main">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+      </li>
+      <li class="nav-item" *ngIf="user.flag !== 'Admin'">
+        <a class="nav-link" href="/user/follow">My Follow</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="user.flag === 'Student'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Questions and answers
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">My Question</a>
+          <a class="dropdown-item" href="#">My Answer</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Post new Question</a>
+        </div>
+      </li>
+      <li class="nav-item" *ngIf="user.flag === 'Teacher'">
+        <a class="nav-link" href="#">My Answers</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container main">
+  <form #inputForm="ngForm">
+    <div class="form-group">
+      <label for="avatar">
+        <h5>Avatar</h5>
+        <h6 class="subtitle">(Click picture to search and change avatar)</h6>
+      </label>
+      <div>
+        <img src="{{user.url}}" id='avatar' alt="Avatar" class="avatar" routerLink="/profile/flickr">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="username">
+        <h5>Username</h5>
+      </label>
+      <div class="profile-usertitle-name" id='username'>
+        {{user.username}}
+      </div>
+      <!--<input type="text" id='username' name='username' class="form-control" [(ngModel)]="user.username" required>-->
+    </div>
+    <div class="form-group">
+      <label for="email">
+        <h5>Email address</h5>
+      </label>
+      <input type="email" id="email" name='email' class="form-control" [(ngModel)]="user.email" required>
+    </div>
+    <div class="form-group">
+      <label for="first-name">
+        <h5>First Name</h5>
+      </label>
+      <input type="text" id="first-name" name='firstName' class="form-control" [(ngModel)]="user.firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="last-name">
+        <h5>Last Name</h5>
+      </label>
+      <input type="text" id="last-name" name='lastName' class="form-control" [(ngModel)]="user.lastName" required>
+    </div>
+
+    <!--<form ngNoForm action="{{baseUrl}}api/upload" method="post" enctype="multipart/form-data">-->
+      <!--<label for="myFile"><h5>Upload Avatar Image</h5></label>-->
+      <!--<input  name="myFile" id="myFile"  type="file" class="form-control form-group"/>-->
+      <!--<input  class="form-inline" name="userId" value="{{user._id}}" style="display: none"/>-->
+      <!--<div class="form-group inter-button">-->
+        <!--<button type="submit" class="btn btn-block btn-primary inter-button">Upload</button>-->
+      <!--</div>-->
+    <!--</form>-->
+
+
+    <div class="form-group inter-button">
+      <button class="btn btn-block btn-primary" (click)="updateUser()">
+        Update Info
+      </button>
+    </div>
+
+    <div class="form-group inter-button">
+      <button routerLink="/login" (click)="deleteUser()" class="btn btn-danger btn-block">Delete User</button>
+    </div>
+
+    <div class="form-group inter-button">
+      <button class="btn btn-danger btn-block" (click)="logout()">Logout</button>
+    </div>
+
+
+  </form>
+</div>
+

@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">NeuSOF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/main">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+      </li>
+      <li class="nav-item" *ngIf="user.flag !== 'Admin'">
+        <a class="nav-link" href="/user/follow">My Follow</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="user.flag === 'Student'">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Questions and answers
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/question">My Question</a>
+          <a class="dropdown-item" href="/questionAnswered">My Answer</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/question/new"><span class="fa fa-plus"></span> Post new Question</a>
+        </div>
+      </li>
+      <li class="nav-item" *ngIf="user.flag === 'Teacher'">
+        <a class="nav-link" href="/questionAnswered">My Answers</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container cl-container-padding">
+  <ul class="list-group cl-list-group-borderless cl-text-black">
+    <li *ngFor="let item of questions" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
+      <a routerLink="/question/{{item._id}}/answer" class="cl-text-black">{{item.title}}</a>
+      <a *ngIf="checkAuthor(item.userId)" routerLink="/question/{{item._id}}" class="cl-text-black"><span class="fas fa-edit"></span></a>
+    </li>
+  </ul>
+</div>

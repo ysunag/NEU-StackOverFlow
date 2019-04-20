@@ -1,0 +1,73 @@
+<!--<nav class="navbar fixed-top cl-blue-navbar">-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="row container-fluid">
+    <div class="col-sm-4 d-none d-sm-block">
+
+      <a routerLink="/question" class="navbar-brand cl-text-white">
+        <i class="fas fa-angle-left"></i>
+      </a>
+      <a class="cl-text-white navbar-brand" routerLink="#">
+        New Question
+      </a>
+      <a routerLink="/question/new" class="navbar-brand cl-text-white float-right cl-icon-padding">
+        <i class="fas fa-plus"></i>
+      </a>
+    </div>
+
+    <div class="row col-sm-8">
+      <a routerLink="/question" class="navbar-brand d-block d-sm-none cl-text-white">
+        <i class="fas fa-angle-left"></i>
+      </a>
+      <a class="cl-text-white navbar-brand" routerLink="#">
+        New Question
+      </a>
+      <span (click)="CreateQuestion()" class="navbar-brand cl-text-white ml-auto">
+        <i class="fas fa-check"></i>
+      </span>
+
+    </div>
+  </div>
+</nav>
+
+
+<div class="row container-fluid cl-container-padding">
+  <div class="col-sm-4 d-none d-sm-block ">
+    <ul class="list-group cl-list-group-borderless cl-text-black">
+      <li *ngFor="let item of questions" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
+        <a routerLink="/question/{{item._id}}/answer" class="cl-text-black">{{item.title}}</a>
+        <a routerLink="/question/{{item._id}}" class="cl-text-black"><span class="fas fa-edit"></span></a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-8">
+    <div *ngIf="errorFlag" class="alert alert-danger">
+      {{errorMsg}}
+    </div>
+    <form class="cl-text-padding">
+      <div class="form-group">
+        <label for="question-name">
+          <h5>Title</h5>
+        </label>
+        <input [(ngModel)]="question.title" name="question-name" type="text" class="form-control" id="question-name" placeholder="Angular component" required #questionName="ngModel">
+        <span class="help-block" *ngIf="!questionName.valid && questionName.touched">
+          Please enter question title!
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="question-description">
+          <h5>Detail</h5>
+        </label>
+        <textarea [(ngModel)]="question.detail" name="question-description" id="question-description" class="form-control" rows="5" placeholder="Description"></textarea>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--<nav class="navbar fixed-bottom cl-blue-navbar">-->
+<nav class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid justify-content-end">
+    <a routerLink="/profile" class="navbar-brand cl-text-white cl-icon-padding">
+      <span class="fas fa-user"></span>
+    </a>
+  </div>
+</nav>
